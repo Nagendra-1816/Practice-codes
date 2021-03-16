@@ -1,0 +1,17 @@
+def rotateImage(matrix):
+  n = len(matrix)
+  for row in range(n):
+    for col in range(row, n):
+      matrix[row][col], matrix[col][row] = matrix[col][row],
+      matrix[row][col]
+  for row in matrix:
+    reverse(row)
+  return matrix
+def reverse(row):
+  pointer1 = 0
+  pointer2 = len(row) — 1
+  while pointer1 < pointer2:
+    row[pointer1], row[pointer2] = row[pointer2], row[pointer1]
+    pointer1 = pointer1 + 1
+    pointer2 = pointer2–1
+  return row

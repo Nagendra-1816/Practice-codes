@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include<stdlib.h>
+void append(void);
+void display(void);
+struct node
+{
+  int data;
+  struct node* next;
+};
+struct node* start=NULL;
+
+int main()
+{
+    int ch;
+    while(1){
+    printf("Enter your choice:");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1 : append();
+                 break;
+        case 2 : display();
+                 break;
+        case 3 : reverse();
+                 break;
+        default : printf("Invalid input\n\n");
+    }
+    }
+
+    return 0;
+}
+reverse(){
+    struct node *prevnode,*currnode,*nextnode;
+    prevnode=NULL;
+    currnode=nextnode=start;
+    while(nextnode!=NULL)
+    {
+        nextnode=nextnode->next;
+        currnode->next=prevnode;
+        prevnode=currnode;
+        currnode=nextnode;
+    }
+    start=prevnode;
+}
+append()
+{
+    struct node* temp;
+    temp=(struct node*)malloc(sizeof(struct node));
+    printf("Enter node data :\n");
+    scanf("%d",&temp->data);
+    temp->next=NULL;
+    if(start==NULL)
+    {
+        start=temp;
+    }
+    else
+    {
+        struct node* ptr;
+        ptr=start;
+        while(ptr->next!=NULL)
+        {
+            ptr=ptr->next;
+        }
+        ptr->next=temp;
+    }
+}
+display()
+{
+    struct node* temp;
+    temp=start;
+    if(temp==NULL)
+    {
+        printf("List is empty\n\n");
+    }
+    else
+    {
+        while(temp!=NULL)
+        {
+            printf("%d-->",temp->data);
+            temp=temp->next;
+        }
+        printf("\n\n");
+    }
+}

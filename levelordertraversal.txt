@@ -1,0 +1,15 @@
+void levelorder(Node* root)
+{
+  queue<Node *>q;
+  queue.push(root);
+  while(q.size()!=0)
+ {
+   NOde* current=q.front();
+   q.pop();
+   cout<<curremt->data<<" ";
+   if(current->left){
+	q.push(current->left);}
+   if(current->right){
+	q.push(current->right);}
+ }
+}
