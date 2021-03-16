@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode(int x) : val(x), next(NULL) {}
+};
+struct ListNode* head;
+ListNode* Listrotate(ListNode* head)
+{
+  if(head==NULL)
+    return head;
+  ListNode* res=head;
+  ListNode* p1=head;
+  ListNode* p2=head->next;
+  ListNode* curr=head->next;
+  while(p1!=NULL && p2!=NULL)
+  {
+    ListNode* t=p2->next;
+    if(t==NULL)
+      break;
+    p1->next=p2->next;
+    p1=p1->next;
+    p2->next=p1->next;
+    p2=p2->next;
+  }
+  p1->next=curr;
+  return res;
+  }
+void printlist(ListNode* head)
+{
+  ListNode* ptr=head;
+  while(ptr!=NULL)
+  {
+    cout<<"->"<<ptr->val;
+    ptr=ptr->next;
+  }
+}
+void append(int x)
+{
+  ListNode* newnode=new ListNode(x);
+  if(head==NULL)
+  {
+    head=newnode;
+  }
+  else
+  {
+    newnode->next=head;
+    head=newnode;
+  }
+}
+int main() {
+	int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  {
+    int x;
+    cin>>x;
+    append(x);
+  }
+  cout<<"Given Linked List"<<endl;
+  printlist(head);
+  cout<<endl<<"Modified Linked List"<<endl;
+  Listrotate(head);
+  printlist(head);
+	return 0;
+}
